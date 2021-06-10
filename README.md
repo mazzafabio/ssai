@@ -27,7 +27,7 @@ Project is structured as follow:
 
 ## TODO
 - *Manage errors* and give them in response in order to inform final users
-- insert *<summary>* tag aroung the code
+- insert *< summary >* tag aroung the code
 - add in solution a *SSAI.Test project* with NUnit for testing with moq
 - add *.gitignore* and take off bin and obj folder
 - document API Endpoint with *OpenAPI 3.0 spec*. I've used for other projects RapidDOC as UI reader for OpenAPI
