@@ -32,31 +32,31 @@ namespace SSAI.API
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ProductResponse> Get(int id)
+        public async Task<GenericResponse<ProductResponse>> Get(int id)
         {
             var result = await _productComponent.Get(id);
 
-            return (ProductResponse) result;
+            return result;
         }
 
 
         [Authorize]
         [HttpGet]
-        public async Task<List<ProductResponse>> GetAll([FromQuery] int page, [FromQuery] int rowsPerPage)
+        public async Task<GenericResponse<List<ProductResponse>>> GetAll([FromQuery] int page, [FromQuery] int rowsPerPage)
         {
             var result = await _productComponent.GetAll(page, rowsPerPage);
 
-            return result.Select(x => (ProductResponse)x).ToList();
+            return result;
         }
 
 
         [Authorize]
         [HttpPost]
-        public async Task<ProductResponse> Add([FromBody] ProductRequest productRequest)
+        public async Task<GenericResponse<ProductResponse>> Add([FromBody] ProductRequest productRequest)
         {
             var result = await _productComponent.Add((Product)productRequest);
 
-            return (ProductResponse)result;
+            return result;
         }
 
 

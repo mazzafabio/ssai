@@ -33,21 +33,21 @@ namespace SSAI.API
 
         [Authorize]
         [HttpGet]
-        public async Task<List<OrderResponse>> GetAll([FromQuery] int page, [FromQuery] int rowsPerPage)
+        public async Task<GenericResponse<List<OrderResponse>>> GetAll([FromQuery] int page, [FromQuery] int rowsPerPage)
         {
             var result = await _orderComponent.GetAll(page, rowsPerPage);
 
-            return result.Select(x => (OrderResponse)x).ToList();
+            return result;
         }
 
 
         [Authorize]
         [HttpPost]
-        public async Task<OrderResponse> Add([FromBody] OrderRequest orderRequest)
+        public async Task<GenericResponse<OrderResponse>> Add([FromBody] OrderRequest orderRequest)
         {
             var result = await _orderComponent.Add((Order)orderRequest, orderRequest.orderProducts.Select(x => (OrderProduct)x).ToList());
 
-            return (OrderResponse)result;
+            return result;
         }
 
 

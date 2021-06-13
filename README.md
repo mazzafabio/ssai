@@ -26,8 +26,8 @@ Project is structured as follow:
 - *UOW* (Means of course Unit of Work...)
 
 ## TODO
-- *Manage errors* and give them in response in order to inform final users
+- *Manage errors* and return them in response in order to inform final users - *DONE*
+- add *.gitignore* and take off bin and obj folder - *DONE*
 - insert *< summary >* tag aroung the code
-- add in solution a *SSAI.Test project* with NUnit for testing with moq
-- add *.gitignore* and take off bin and obj folder
 - document API Endpoint with *OpenAPI 3.0 spec*. I've used for other projects RapidDOC as UI reader for OpenAPI
+- add in solution a *SSAI.Test project* with NUnit for testing with moq

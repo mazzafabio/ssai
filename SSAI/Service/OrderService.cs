@@ -1,6 +1,7 @@
 ﻿using SSAI.Entity.DB;
 using SSAI.Helpers.ComputationTotalAmount;
 using SSAI.Helpers.Pagination;
+using SSAI.Model.Response;
 using SSAI.UOW;
 using System;
 using System.Collections.Generic;
@@ -23,15 +24,30 @@ namespace SSAI.Service
         }
 
 
-        public async Task<List<Order>> GetAll(int page, int rowsPerPage)
+        public async Task<GenericResponse<List<OrderResponse>>> GetAll(int page, int rowsPerPage)
         {
-            return _unitOfWorkOrder.Orders.GetAll(page, rowsPerPage).ToList();
+            var result = _unitOfWorkOrder.Orders.GetAll(page, rowsPerPage).ToList();
+            var modelRes = result.Select(x => (OrderResponse)x).ToList();
+
+            var resultRes = new GenericResponse<List<OrderResponse>>
+            {
+                error = false,
+                message = "",
+                model = modelRes
+            };
+
+            return resultRes;
         }
 
 
-        public async Task<Order> Add(Order order, List<OrderProduct> orderProducts)
+        public async Task<GenericResponse<OrderResponse>> Add(Order order, List<OrderProduct> orderProducts)
         {
             bool result = false;
+            var resultRes = new GenericResponse<OrderResponse>
+            {
+                error = false,
+                message = "",
+            };
 
             try
             {
@@ -95,9 +111,15 @@ namespace SSAI.Service
                     _unitOfWorkProduct.Save();
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                resultRes.error = true;
+                resultRes.message = ex.Message;
+            }
 
-            return result ? order : null;
+            resultRes.model = result ? (OrderResponse)order : null;
+
+            return resultRes;
         }
     }
 }

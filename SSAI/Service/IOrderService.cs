@@ -1,4 +1,5 @@
 ﻿using SSAI.Entity.DB;
+using SSAI.Model.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SSAI.Service
 {
     public interface IOrderService
     {
-        Task<List<Order>> GetAll(int page, int rowsPerPage);
-        Task<Order> Add(Order order, List<OrderProduct> orderProducts);
+        Task<GenericResponse<List<OrderResponse>>> GetAll(int page, int rowsPerPage);
+        Task<GenericResponse<OrderResponse>> Add(Order order, List<OrderProduct> orderProducts);
     }
 }

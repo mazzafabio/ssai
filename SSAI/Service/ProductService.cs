@@ -1,5 +1,6 @@
 ﻿using SSAI.Entity.DB;
 using SSAI.Helpers.Pagination;
+using SSAI.Model.Response;
 using SSAI.UOW;
 using System;
 using System.Collections.Generic;
@@ -22,24 +23,47 @@ namespace SSAI.Service
         }
 
 
-        public async Task<Product> Get(int id)
+        public async Task<GenericResponse<ProductResponse>> Get(int id)
         {
             var result = await _unitOfWorkProduct.Products.Get(id);
+            var modelRes = (ProductResponse)result;
 
-            return result;
+            var resultRes = new GenericResponse<ProductResponse>
+            {
+                error = false,
+                message = "",
+                model = modelRes
+            };
+
+            return resultRes;
         }
 
 
-        public async Task<List<Product>> GetAll(int page, int rowsPerPage)
+        public async Task<GenericResponse<List<ProductResponse>>> GetAll(int page, int rowsPerPage)
         {
-            return _unitOfWorkProduct.Products.GetAll(page, rowsPerPage).ToList();
+            var result = _unitOfWorkProduct.Products.GetAll(page, rowsPerPage).ToList();
+            var modelRes = result.Select(x => (ProductResponse)x).ToList();
+
+            var resultRes = new GenericResponse<List<ProductResponse>>
+            {
+                error = false,
+                message = "",
+                model = modelRes
+            };
+
+            return resultRes;
         }
 
 
-        public async Task<Product> Add(Product product)
+        public async Task<GenericResponse<ProductResponse>> Add(Product product)
         {
             bool result = false;
-            
+            var resultRes = new GenericResponse<ProductResponse>
+            {
+                error = false,
+                message = "",
+            };
+
             try
             {
                 var exists = _unitOfWorkProduct.Products.Exists(product);
@@ -55,9 +79,14 @@ namespace SSAI.Service
                 if (result)
                     _unitOfWorkProduct.Save();
             }
-            catch (Exception) { }
+            catch (Exception ex) {
+                resultRes.error = true;
+                resultRes.message = ex.Message;
+            }
 
-            return result ? product : null;
+            resultRes.model = result ? (ProductResponse)product : null;
+
+            return resultRes;
         }
     }
 }
