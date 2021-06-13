@@ -3,8 +3,9 @@
 ## Presentation
 Hi I'm Fabio and this is my coding challenge solution. I wanted to give you some consideration before start with DOC. I've used EF Core (Code First) as O/RM and SQL Server as database. EF Core itself is already an UoW/Repository pattern implementation but however I implemented my custom UoW and repo pattern (NO generic, just cause the project is small). This can be useful for testing (I can use EFCore InMemory) or if, in the future, there will be the needs of change ORM or database!
 Another consideration is about the computation of total amount of a order: I've used Strategy Pattern (in view of future company codes).
-Last consideration is about the Jwt authentication. Usually I've used external tool like Auth0 that already have frontend integration and backend token generation: I've just to implement the Verify function. In this project, however, I created a custom middleware and [authorize] attribute. I have not create an User table in DB, I've just hard coded a list with 1 user: username: test, password: test).
+Last consideration is about the Jwt authentication. Usually I've used external tool like Auth0 that already have frontend integration and backend token generation: I've just to implement the Verify function. In this project, however, I created a custom middleware and [authorize] attribute. I have not create an User table in DB, I've just hard coded a list with 1 user: username: test, password: test). The algorithm used for generation of token is HMAC and private key is in appsettings, but usually must be saved in secure store as aws secret manager.
 Business Logic is in services and so, if this REST API will deploy in serverless solution as AWS Lambda, it's easy to do.
+OpenAPI json is generated with the help of swashbuckle package and can be view at endpoint /swagger/index.html".
 
 ## Documentation
 Project is structured as follow:
@@ -29,5 +30,5 @@ Project is structured as follow:
 - *Manage errors* and return them in response in order to inform final users - *DONE*
 - add *.gitignore* and take off bin and obj folder - *DONE*
 - insert *< summary >* tag aroung the code - *DONE*
-- document API Endpoint with *OpenAPI 3.0 spec*. I've used for other projects RapidDOC as UI reader for OpenAPI
+- document API Endpoint with *OpenAPI 3.0 spec*. - *WORKING*
 - add in solution a *SSAI.Test project* with NUnit for testing with moq
