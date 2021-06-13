@@ -30,5 +30,5 @@ Project is structured as follow:
 - *Manage errors* and return them in response in order to inform final users - *DONE*
 - add *.gitignore* and take off bin and obj folder - *DONE*
 - insert *< summary >* tag aroung the code - *DONE*
-- document API Endpoint with *OpenAPI 3.0 spec*. - *WORKING*
-- add in solution a *SSAI.Test project* with NUnit for testing with moq
+- document API Endpoint with *OpenAPI 3.0 spec*. - *DONE*
+- add in solution a *SSAI.Test project* with NUnit for testing with moq - *WORKING*
