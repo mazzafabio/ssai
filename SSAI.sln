@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSAI", "SSAI\SSAI.csproj", "{49BCB0FB-F180-45D0-9D78-6D8F02EF9A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSAI", "SSAI\SSAI.csproj", "{49BCB0FB-F180-45D0-9D78-6D8F02EF9A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSAITest", "SSAITest\SSAITest.csproj", "{475CDA5F-65D3-41AA-A9B1-262AE5BBECDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{49BCB0FB-F180-45D0-9D78-6D8F02EF9A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49BCB0FB-F180-45D0-9D78-6D8F02EF9A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49BCB0FB-F180-45D0-9D78-6D8F02EF9A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475CDA5F-65D3-41AA-A9B1-262AE5BBECDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475CDA5F-65D3-41AA-A9B1-262AE5BBECDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475CDA5F-65D3-41AA-A9B1-262AE5BBECDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475CDA5F-65D3-41AA-A9B1-262AE5BBECDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
