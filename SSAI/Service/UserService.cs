@@ -32,14 +32,20 @@ namespace SSAI.Service
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+            AuthenticateResponse authResponse = null;
 
-            if (user == null) return null;
+            try
+            {
+                var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
-            var token = generateJwtToken(user);
+                if (user == null) return null;
 
-            var authResponse = (AuthenticateResponse)user;
-            authResponse.Token = token;
+                var token = generateJwtToken(user);
+
+                authResponse = (AuthenticateResponse)user;
+                authResponse.Token = token;
+            }
+            catch (Exception) { }
 
             return authResponse;
         }
