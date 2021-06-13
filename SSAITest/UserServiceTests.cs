@@ -13,6 +13,7 @@ namespace SSAITest
     public class UserServiceTests
     {
         private IOptions<AppSettings> _appSettings { get; set; }
+        private UserService userService;
 
 
         [SetUp]
@@ -22,6 +23,7 @@ namespace SSAITest
             {
                 Secret = "blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla123"
             });
+            userService = new UserService(_appSettings);
         }
 
 
@@ -29,7 +31,6 @@ namespace SSAITest
         public async Task UserService_Authenticate_CorrectCredentials_ShouldSuccess()
         {
             //Arrange
-            var objtest = new UserService(_appSettings);
             var authModel = new AuthenticateRequest
             {
                 Username = "test",
@@ -38,7 +39,7 @@ namespace SSAITest
             AuthenticateResponse result;
 
             //Act
-            result = objtest.Authenticate(authModel);
+            result = userService.Authenticate(authModel);
 
             //Assert
             Assert.IsNotNull(result);
@@ -52,7 +53,6 @@ namespace SSAITest
         public async Task UserService_Authenticate_CorrectCredentials_ShouldFail()
         {
             //Arrange
-            var objtest = new UserService(_appSettings);
             var authModel = new AuthenticateRequest
             {
                 Username = "",
@@ -61,7 +61,7 @@ namespace SSAITest
             AuthenticateResponse result;
 
             //Act
-            result = objtest.Authenticate(authModel);
+            result = userService.Authenticate(authModel);
 
             //Assert
             Assert.IsNull(result);
