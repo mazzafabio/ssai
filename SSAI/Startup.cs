@@ -65,6 +65,33 @@ namespace SSAI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API DOC SSAI", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                        Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                    }
+                });
             });
         }
 
